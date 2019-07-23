@@ -8,8 +8,9 @@ const app = express();
 
 const { Pool, Client } = require('pg');
 
+const config = require('./config/config')
 // DB Connect string
-const connectionString ="postgres://postgres:password@localhost/practice";
+const connectionString = config.connectionString;
 
 const pool = new Pool({
     connectionString: connectionString,
