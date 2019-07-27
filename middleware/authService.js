@@ -1,6 +1,7 @@
 var jwt = require('jsonwebtoken');
 var config = require('../config/config');
 
+// Middleware to check the validity of the token
 module.exports = function(req, res, next) {
     if( req.hasOwnProperty('headers') && req.headers.hasOwnProperty('authorization') ) {
         try {

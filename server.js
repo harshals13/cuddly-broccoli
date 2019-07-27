@@ -14,6 +14,7 @@ var router = express.Router();
 
 const db = require('./config/database');
 
+// Authenticating the database
 db.authenticate()
 .then(() => console.log('Database connected'))
 .catch(err => console.log('Error:' + err));
@@ -22,41 +23,19 @@ db.authenticate()
 // Using Bodyparser
 app.use(bodyParser.json());
 
-// const { Pool } = require('pg');
-// const pool = new Pool({
-//   connectionString: config.connectionString,
-//   ssl: true
-// });
-
-// const client = pool.connect()
-//   .then(() => console.log("Connected Successfully"))
-//   .catch( e => console.log(e));
-
-  //client.release();
-
-//   const client = new Client({
-//     user: config.client.user,
-//     host: config.client.host,
-//     database: config.client.database,
-//     password: config.client.password,
-//     port: config.client.port
-//   });
-
-// client.connect()
-//   .then(() => console.log("Connected Successfully"))
-//   .catch( e => console.log(e))
-//   .finally(() => client.end());
-
   // API to check if server is active
   app.get('/ping', function(req, res) {
       res.send("Hello, there!");
       console.log("Hello, there!");
   });
 
+  // To authenticate with token
   app.use('/api/v1', require('./middleware/authService'));
 
+  // Controller for bank related API
   app.use('/api/v1/bank/search', require('./controllers/bankdetails'), (router));
 
+  // Controller to get authentication token
   app.use('/', require('./controllers/user'));
 
   module.exports = app;

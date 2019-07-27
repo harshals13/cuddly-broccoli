@@ -23,8 +23,7 @@ router.get('/ifsc/:ifsccode', (req, res)=> {
           }
     })
     .then(banks => {
-        console.log(banks)
-        res.send(banks)
+        res.send(banks);
     })
     .catch(err => console.log(err));
     
@@ -50,7 +49,6 @@ router.get('/city/:cityname/bank/:bankname/', (req, res) => {
           } 
     })
     .then(banks => {
-        console.log(banks)
         res.send(banks)
     })
     .catch(err => console.log(err));
