@@ -10,9 +10,9 @@ router.get('/ifsc/:ifsccode', (req, res)=> {
     // SQL query goes here!
     let ifscCode = req.params.ifsccode;
 
-    let limit = req.params.limit;
+    let limit = req.query.limit;
 
-    let offset = req.params.offset;
+    let offset = req.query.offset;
 
     Bank.findAll({
         attributes: ['ifsc', 'bank_id', 'state', 'district', 'bank_name', 'city', 'address', 'branch'],
@@ -36,9 +36,9 @@ router.get('/city/:cityname/bank/:bankname/', (req, res) => {
 
     let bankName = req.params.bankname;
 
-    let limit = req.params.limit;
+    let limit = req.query.limit;
 
-    let offset = req.params.offset;
+    let offset = req.query.offset;
 
     Bank.findAll({
         attributes: ['ifsc', 'bank_id', 'state', 'district', 'bank_name', 'city', 'address', 'branch'],
