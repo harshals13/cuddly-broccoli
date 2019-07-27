@@ -1,38 +1,36 @@
 const express = require('express');
-
 const router = express.Router();
-
-const { Client } = require('pg');
-
 const config = require('../config/config');
+const db = require('../config/database');
+const Bank = require('../models/bank');
 
-const client = new Client({
-  connectionString: config.connectionString,
-  ssl: true,
-});
-
-client.connect();
 
 router.get('/ifsc/:ifsccode', (req, res)=> {
 
+    // SQL query goes here!
     let ifscCode = req.params.ifsccode;
 
-    let result;
+    let limit = req.params.limit;
 
-    client.query('select row_to_json(row(ifsc, bank_id, branch, address, city, district, state, bank_name)) from bankdetails LIMIT 10', (err, res) => {
-        if (err) throw err;
-        for (let row of res.rows) {
-            console.log(JSON.stringify(row));
+    let offset = req.params.offset;
+
+    Bank.findAll({
+        attributes: ['ifsc', 'bank_id', 'state', 'district', 'bank_name', 'city', 'address', 'branch'],
+        limit: limit,
+        offset: offset,
+        where: {
+            ifsc: ifscCode
           }
-        result = JSON.parse(res.rows);
-      });
-    res.send(result);
-    res.end();
+    })
+    .then(banks => {
+        console.log(banks)
+        res.send(banks)
+    })
+    .catch(err => console.log(err));
     
- // SQL query goes here!
 });
 
-router.get('/city', (req, res) => {
+router.get('/city/', (req, res) => {
     // SQL query goes here!
 });
 

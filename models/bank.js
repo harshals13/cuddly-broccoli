@@ -27,3 +27,5 @@ const Bank = db.define('bankdetails', {
         type: Sequelize.STRING
     }
 });
+
+module.exports = Bank;
