@@ -12,23 +12,40 @@ const config = require('./config/config');
 
 var router = express.Router();
 
+const db = require('./config/database');
+
+db.authenticate()
+.then(() => console.log('Database connected'))
+.catch(err => console.log('Error:' + err));
+
 
 // Using Bodyparser
 app.use(bodyParser.json());
 
-  const client = new Client({
-    user: config.client.user,
-    host: config.client.host,
-    database: config.client.database,
-    password: config.client.password,
-    port: config.client.port
-  });
+// const { Pool } = require('pg');
+// const pool = new Pool({
+//   connectionString: config.connectionString,
+//   ssl: true
+// });
 
-  client.connect()
-  .then(() => console.log("Connected Successfully"))
-  .catch( e => console.log(e))
-  .finally(() => client.end());
+// const client = pool.connect()
+//   .then(() => console.log("Connected Successfully"))
+//   .catch( e => console.log(e));
 
+  //client.release();
+
+//   const client = new Client({
+//     user: config.client.user,
+//     host: config.client.host,
+//     database: config.client.database,
+//     password: config.client.password,
+//     port: config.client.port
+//   });
+
+// client.connect()
+//   .then(() => console.log("Connected Successfully"))
+//   .catch( e => console.log(e))
+//   .finally(() => client.end());
 
   // API to check if server is active
   app.get('/ping', function(req, res) {
@@ -38,7 +55,7 @@ app.use(bodyParser.json());
 
   app.use('/api/v1', require('./middleware/authService'));
 
-  app.use('/api/v1', require('./controllers/bankdetails'), (router));
+  app.use('/api/v1/bank/search', require('./controllers/bankdetails'), (router));
 
   app.use('/', require('./controllers/user'));
 
