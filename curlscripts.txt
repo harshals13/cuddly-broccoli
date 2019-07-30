@@ -1,0 +1,30 @@
+COMMAND to fetch bank details with city and bank name with offset and limit
+
+curl -X GET \
+  'https://floating-depths-70935.herokuapp.com/api/v1/bank/search/city/hyderabad/bank/ANdhRA%20BANK/?limit=5&offset=5' \
+  -H 'Accept: */*' \
+  -H 'Accept-Encoding: gzip, deflate' \
+  -H 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTY0MjIwNTcyLCJleHAiOjE1NjQ2NTI1NzJ9.XkY7PhsxR1qjThKVxm_L_mYV0BLLfr8EI3piWJzGuto' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Type: application/json' \
+  -H 'Host: floating-depths-70935.herokuapp.com' \
+  -H 'Postman-Token: f8dca037-a754-4a10-8e2e-7115596c5822,059f7a21-bf56-43b7-8b83-e2ee6c6cd324' \
+  -H 'User-Agent: PostmanRuntime/7.15.2' \
+  -H 'cache-control: no-cache'
+
+
+
+Command to fetch bank details with IFSC code with offset and limit
+
+curl -X GET \
+  'https://floating-depths-70935.herokuapp.com/api/v1/bank/search/ifsc/ANDB0001913?limit=5&offset=5' \
+  -H 'Accept: */*' \
+  -H 'Accept-Encoding: gzip, deflate' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Connection: keep-alive' \
+  -H 'Host: floating-depths-70935.herokuapp.com' \
+  -H 'Postman-Token: 6e541b18-0d7b-4b41-ab39-a8ed6f0f685d,34add250-5cae-447a-951e-3cddd233b85b' \
+  -H 'User-Agent: PostmanRuntime/7.15.2' \
+  -H 'authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTY0MTM3MDYyLCJleHAiOjE1NjQ1NjkwNjJ9.VMw6BVp_W7i60j2IIZCFFVV4D95-TKxjjTRcgmYz2hw' \
+  -H 'cache-control: no-cache'
